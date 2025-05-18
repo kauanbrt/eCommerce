@@ -1,10 +1,10 @@
 import http from 'http';
-import { connectDB } from './database/database.js';
+import { connectDB } from './src/database/database.js';
 const PORT = 3000;
 
-import { ProductController } from './controllers/ProductController.js';
-// import { CustomerController } from './controllers/CustomerController.js';
-// import { OrderController } from './controllers/OrderController.js';
+import { ProductController } from './src/controllers/ProductController.js';
+import { CustomerController } from './src/controllers/CustomerController.js';
+import { OrderController } from './src/controllers/OrderController.js';
 
 async function startServer(){
     try{
@@ -16,9 +16,9 @@ async function startServer(){
             if(req.url.startsWith('/products')){
                 ProductController.handle(req, res);
             } else if (req.url.startsWith('/customers')){
-                // CustomerController.handle(req, res);
+                CustomerController.handle(req, res);
             } else if (req.url.startsWith('/orders')){
-                // OrderController.handle(req, res);
+                OrderController.handle(req, res);
             } else {
                 res.writeHead(404);
                 res.end(JSON.stringify({ error: 'Rota não encontrada.' }));

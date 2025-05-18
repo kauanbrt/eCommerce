@@ -13,7 +13,25 @@ export class ProductService {
 
     static async insertProduct(product){
         try {
+            //Valida os campos obrigatorios
             this.validate(product);
+
+            //Valida se já existe produto com o mesmo nome
+            const existing = await ProductModel.findByName(product.name);
+            if (existing) {
+                throw new Error('Já existe um produto com este nome.');
+            }
+
+            // Valida tipo e valor do preço
+            if (typeof product.price !== 'number' || product.price <= 0) {
+                throw new Error('Preço inválido. Deve ser um número maior que zero.');
+            }
+
+            // Valida tipo e valor do estoque
+            if (!Number.isInteger(product.amount) || product.amount < 0) {
+                throw new Error('Estoque inválido. Deve ser um número inteiro positivo ou zero.');
+            }
+
             const result = await ProductModel.insert(product);
             return result.insertedId;
         } catch (err) {

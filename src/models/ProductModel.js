@@ -23,6 +23,11 @@ export class ProductModel {
         return await db.findOne({ _id: new ObjectId(id) });
     }
 
+    static async findByName(name) {
+        const db = this.getCollection();
+        return await db.findOne({ name });
+    }
+
     static async update(id, data){
         const db = this.getCollection();
         return await db.updateOne(
