@@ -3,6 +3,8 @@ import { ProductModel } from '../models/ProductModel.js';
 import { logError } from '../logs/logError.js';
 
 export class OrderService {
+    
+    //Valida os campos obrigatorios
     static validate(order) {
         const requiredFields = ['product_id', 'customer_id', 'amount'];
         for(const field of requiredFields){
@@ -12,6 +14,7 @@ export class OrderService {
         }
     }
 
+    //Cadastra um novo pedido
     static async insertOrder(order){
         try {
             //Valida os campos obrigatorios
@@ -52,6 +55,7 @@ export class OrderService {
         }
     }
 
+    //Recupera todos os pedidos
     static async getAll(){
         try {
             return await OrderModel.findAll();
@@ -61,6 +65,7 @@ export class OrderService {
         }
     }
 
+    //Atualiza o pedido
     static async updateOrder(id, data){
         try {
             return await OrderModel.update(id, data);
@@ -70,6 +75,7 @@ export class OrderService {
         }
     }
 
+    //Deleta o pedido
     static async deleteOrder(id){
         try {
             return await OrderModel.delete(id);

@@ -2,6 +2,8 @@ import { ProductModel } from '../models/ProductModel.js';
 import { logError } from '../logs/logError.js';
 
 export class ProductService {
+    
+    //Valida os campos obrigatorios
     static validate(product) {
         const requiredFields = ['name', 'price', 'amount'];
         for(const field of requiredFields){
@@ -11,6 +13,7 @@ export class ProductService {
         }
     }
 
+    //Cadastra um novo produto
     static async insertProduct(product){
         try {
             //Valida os campos obrigatorios
@@ -40,6 +43,7 @@ export class ProductService {
         }
     }
 
+    //Recupera todos os produtos
     static async getAll(){
         try {
             return await ProductModel.findAll();
@@ -49,6 +53,7 @@ export class ProductService {
         }
     }
 
+    //Atualiza o produto
     static async updateProduct(id, data){
         try {
             return await ProductModel.update(id, data);
@@ -58,6 +63,7 @@ export class ProductService {
         }
     }
 
+    //Deleta o produto
     static async deleteProduct(id){
         try {
             return await ProductModel.delete(id);

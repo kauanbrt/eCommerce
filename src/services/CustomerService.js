@@ -2,6 +2,8 @@ import { CustomerModel } from '../models/CustomerModel.js';
 import { logError } from '../logs/logError.js';
 
 export class CustomerService {
+
+    //Valida os campos obrigatorios
     static validate(customer) {
         const requiredFields = ['name', 'email', 'cpf'];
         for(const field of requiredFields){
@@ -11,6 +13,7 @@ export class CustomerService {
         }
     }
 
+    //Cadastra um novo Cliente
     static async insertCustomer(customer){
         try {
             //Valida os campos obrigatorios
@@ -36,6 +39,7 @@ export class CustomerService {
         }
     }
 
+    //Recupera todos os clientes
     static async getAll(){
         try {
             return await CustomerModel.findAll();
@@ -45,6 +49,7 @@ export class CustomerService {
         }
     }
 
+    //Atualiza o cliente
     static async updateCustomer(id, data){
         try {
             return await CustomerModel.update(id, data);
@@ -54,6 +59,7 @@ export class CustomerService {
         }
     }
 
+    //Deleta o cliente
     static async deleteCustomer(id){
         try {
             return await CustomerModel.delete(id);
