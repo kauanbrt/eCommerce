@@ -16,4 +16,8 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "eCommerce API está funcionando!" });
 });
 
+app.use((req, res, next) => {
+    res.status(404).json({ error: 'Rota não encontrada' });
+});
+
 export default app;
