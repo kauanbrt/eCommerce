@@ -1,5 +1,6 @@
 import { UserModel } from '../models/UserModel.js';
 import { logError } from '../logs/logError.js';
+import bcrypt from 'bcryptjs';
 
 export class UserService {
     
@@ -25,9 +26,18 @@ export class UserService {
                 throw new Error('Email já cadastrado no sistema.');
             }
 
-            //todo chamar classe de servico auth para criptografar a senha
+            //criptografa a senha
+            const salt = bcrypt.genSaltSync(14);
+            const cryptPassword = bcrypt.hashSync(user.password, salt);
+            
+            const newUser = {
+                name: user.name,
+                email: user.email,
+                password: cryptPassword,
+            };
 
-            const result = await UserModel.insert(user);
+            //insere o novo usuario
+            const result = await UserModel.insert(newUser);
             return result.insertedId;
         } catch (err) {
             logError(err);
@@ -39,6 +49,16 @@ export class UserService {
     static async getAll(){
         try {
             return await UserModel.findAll();
+        } catch (err) {
+            logError(err);
+            throw err;
+        }
+    }
+
+    //Recupera o usuario com base no email
+    static async getByEmail(email){
+        try {
+            return await UserModel.findByEmail(email);
         } catch (err) {
             logError(err);
             throw err;

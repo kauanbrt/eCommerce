@@ -5,6 +5,7 @@ import productRouter from "./routes/productRouter.js";
 import customerRouter from "./routes/CustomerRouter.js";
 import orderRouter from "./routes/OrderRouter.js";
 import userRouter from "./routes/UserRouter.js";
+import authRouter from "./routes/AuthRouter.js";
 
 //configura o env
 dotenv.config();
@@ -18,6 +19,7 @@ app.use('/api', productRouter);
 app.use('/api', customerRouter);
 app.use('/api', orderRouter);
 app.use('/api', userRouter);
+app.use('/api', authRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "eCommerce API está funcionando!" });
