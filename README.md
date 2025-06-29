@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de E-commerce – API REST
 
-Este projeto consiste em uma API REST desenvolvida em **Node.js (sem Express)** com persistência de dados em **MongoDB**, com o objetivo de simular operações básicas de um sistema de e-commerce. A aplicação permite o gerenciamento de produtos, clientes e pedidos, seguindo boas práticas de organização em camadas (Model, Service, Controller) e implementando validações e regras de negócio.
+Este projeto consiste em uma API REST desenvolvida em **Node.js e Express** com persistência de dados em **MongoDB**, com o objetivo de simular operações básicas de um sistema de e-commerce. A aplicação permite o gerenciamento de produtos, clientes e pedidos, seguindo boas práticas de organização em camadas (Model, Service, Controller) e implementando validações e regras de negócio.
 
 Projeto desenvolvido para a disciplina **Programação Web Back-End** da UTFPR.
 
@@ -11,22 +11,26 @@ Projeto desenvolvido para a disciplina **Programação Web Back-End** da UTFPR.
 A seguir, estão descritas as três entidades principais e as respectivas operações implementadas para cada uma:
 
 ### Produto (`/products`)
-- `GET /products` – Lista todos os produtos
-- `POST /products` – Cadastra um novo produto
-- `PUT /products/:id` – Atualiza um produto existente
-- `DELETE /products/:id` – Remove um produto
+- `GET /api/products` – Lista todos os produtos (Pública)
+- `POST /api/products` – Cadastra um novo produto
+- `PUT /api/products/:id` – Atualiza um produto existente
+- `DELETE /api/products/:id` – Remove um produto
 
 ### Cliente (`/customers`)
-- `GET /customers` – Lista todos os clientes
-- `POST /customers` – Cadastra um novo cliente
-- `PUT /customers/:id` – Atualiza um cliente existente
-- `DELETE /customers/:id` – Remove um cliente
+- `GET /api/customers` – Lista todos os clientes
+- `POST /api/customers` – Cadastra um novo cliente
+- `PUT /api/customers/:id` – Atualiza um cliente existente
+- `DELETE /api/customers/:id` – Remove um cliente
 
 ### Pedido (`/orders`)
-- `GET /orders` – Lista todos os pedidos
-- `POST /orders` – Cria um novo pedido
-- `PUT /orders/:id` – Atualiza um pedido (por exemplo, para encerrá-lo)
-- `DELETE /orders/:id` – Remove um pedido
+- `GET /api/orders` – Lista todos os pedidos
+- `POST /api/orders` – Cria um novo pedido
+- `PUT /api/orders/:id` – Atualiza um pedido (por exemplo, para encerrá-lo)
+- `DELETE /api/orders/:id` – Remove um pedido
+
+### Autenticação
+- `POST /api/login` – Valida o usuário e retorna o token de autenticação
+- `POST /api/verify` – Verifica se o token é válido
 
 ---
 
@@ -101,7 +105,9 @@ node server.js
 
 5. Acesse os endpoints via Postman, Insomnia ou navegador:
 ```
-http://localhost:3000/products
-http://localhost:3000/customers
-http://localhost:3000/orders
+http://localhost:3000/api/products
+http://localhost:3000/api/customers
+http://localhost:3000/api/orders
+http://localhost:3000/api/login
+http://localhost:3000/api/verify
 ```
