@@ -1,11 +1,10 @@
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 export class AuthService
 {
     static async generateToken(user)
     {
-        const secret = process.env.TOKEN_SECRET;
+        const secret = process.env.TOKEN_SECRET || 'secret';
 
         const data = {
             id: user.id,
@@ -26,7 +25,7 @@ export class AuthService
 
     static async verifyToken(token = null)
     {
-        const secret = process.env.TOKEN_SECRET;
+        const secret = process.env.TOKEN_SECRET || 'secret';
     
         if (!token) return false;
     
