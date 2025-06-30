@@ -28,6 +28,12 @@ A seguir, estão descritas as três entidades principais e as respectivas opera�
 - `PUT /api/orders/:id` – Atualiza um pedido (por exemplo, para encerrá-lo)
 - `DELETE /api/orders/:id` – Remove um pedido
 
+### Usuário (`/users`)
+- `GET /api/users` – Lista todos os usuários
+- `POST /api/users` – Cria um novo usuário
+- `PUT /api/users/:id` – Atualiza um usuários
+- `DELETE /api/users/:id` – Remove um usuário
+
 ### Autenticação
 - `POST /api/login` – Valida o usuário e retorna o token de autenticação
 - `POST /api/verify` – Verifica se o token é válido
@@ -57,6 +63,11 @@ A API implementa validações de campos obrigatórios e regras específicas para
   - O valor total do pedido é calculado automaticamente com base na quantidade e no preço do produto
   - Após a criação do pedido, o estoque do produto é atualizado
   - Pedidos são criados com status `"open"` e podem ser encerrados posteriormente via atualização (`PUT`)
+
+### Usuário
+- Campos obrigatórios: `name`, `email`, `password`
+- Não é permitido cadastrar usuários com e-mail duplicados
+- A senha deve ser criptografada para persistir no banco
 
 ---
 
@@ -108,6 +119,7 @@ node server.js
 http://localhost:3000/api/products
 http://localhost:3000/api/customers
 http://localhost:3000/api/orders
+http://localhost:3000/api/users
 http://localhost:3000/api/login
 http://localhost:3000/api/verify
 ```
